@@ -15,10 +15,6 @@ package="lingya.jfdii">
     <activity android:name=".MainActivity">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
-
-            <intent-filter>
-                <action android:name="JFDII.ACTION_DATA_AVAILABLE" />
-            </intent-filter>
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
@@ -27,7 +23,6 @@ package="lingya.jfdii">
         android:name="lingya.jfdii.MeasureValueReceiver"
         android:exported="true"
         android:enabled="true" >
-
         <intent-filter>
             <action android:name="JFDII.ACTION_DATA_AVAILABLE" />
         </intent-filter>

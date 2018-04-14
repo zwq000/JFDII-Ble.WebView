@@ -17,14 +17,13 @@ public class MeasureValueReceiver extends BroadcastReceiver {
     public final static String EXTRA_MEASURE_VALUE = "EXTRA_MEASURE_VALUE";
 
     /**
-     * 声明 键盘代理
+     * 声明 键盘代理 ，设置前缀/后缀
      */
     private KeybroadProxy proxy = new KeybroadProxy(KeyEvent.KEYCODE_UNKNOWN,KeyEvent.KEYCODE_TAB);
 
     @Override
     public void onReceive(Context context, Intent intent) {
         if(intent.getAction().equals(ACTTION_DATA_AVALIABLE)){
-            //MeasureValue.Creator.createFromParcel
             MeasureValue value = intent.getParcelableExtra(EXTRA_MEASURE_VALUE);
             Log.d(TAG,"receive " + value.toString());
             proxy.sendString(value.getValue());
