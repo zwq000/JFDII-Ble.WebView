@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">JFDII.LE.WebView</string>
+    <string name="sendkey">SendKey</string>
+    <string name="measure_value_receiver">测量数据接收器</string>
+</resources>
