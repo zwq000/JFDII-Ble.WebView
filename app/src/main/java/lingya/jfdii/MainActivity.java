@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     private WebView myWebview;
     private static final String TAG = "MainActivity";
-    private KeybroadProxy keybroadProxy;
+    private KeybroadProxy keybroadProxy = new KeybroadProxy();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         myWebview.loadUrl("http://www.baidu.com");
+
+        //myWebview.loadUrl("file:///android_asset/index.html");
     }
 
     @Override
@@ -52,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
      * 测试 发送键盘数据
      */
     private void testSendKey(){
-        keybroadProxy = new KeybroadProxy();
         keybroadProxy.sendString("1234.123");
     }
 
@@ -71,16 +72,24 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setLoadWithOverviewMode(true);
 
         //缩放操作
-        webSettings.setSupportZoom(true); //支持缩放，默认为true。是下面那个的前提。
-        webSettings.setBuiltInZoomControls(true); //设置内置的缩放控件。若为false，则该WebView不可缩放
-        webSettings.setDisplayZoomControls(false); //隐藏原生的缩放控件
+        //支持缩放，默认为true。是下面那个的前提。
+        webSettings.setSupportZoom(true);
+        //设置内置的缩放控件。若为false，则该WebView不可缩放
+        webSettings.setBuiltInZoomControls(true);
+        //隐藏原生的缩放控件
+        webSettings.setDisplayZoomControls(false);
 
         //其他细节操作
-        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK); //关闭webview中缓存
-        webSettings.setAllowFileAccess(true); //设置可以访问文件
-        webSettings.setJavaScriptCanOpenWindowsAutomatically(false); //支持通过JS打开新窗口
-        webSettings.setLoadsImagesAutomatically(true); //支持自动加载图片
-        webSettings.setDefaultTextEncodingName("utf-8");//设置编码格式
+        //关闭webview中缓存
+        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        //设置可以访问文件
+        webSettings.setAllowFileAccess(true);
+        //支持通过JS打开新窗口
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(false);
+        //支持自动加载图片
+        webSettings.setLoadsImagesAutomatically(true);
+        //设置编码格式
+        webSettings.setDefaultTextEncodingName("utf-8");
 
         myWebview.setWebViewClient(new WebViewClient(){
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

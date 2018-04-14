@@ -3,5 +3,5 @@
 
     <item
         android:id="@+id/menu_item_sendkey"
-        android:title="@string/sendkey" />
+        android:title="@string/test_send_key" />
 </menu>
