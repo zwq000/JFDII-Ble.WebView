@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">JFDII.LE.WebView</string>
+    <string name="test_send_key">测试键盘发送</string>
+    <string name="measure_value_receiver">测量数据接收器</string>
+</resources>
