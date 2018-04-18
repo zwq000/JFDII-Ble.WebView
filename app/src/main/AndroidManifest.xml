@@ -3,6 +3,7 @@
 package="lingya.jfdii">
 
 <uses-permission android:name="android.permission.INTERNET" />
+<permission android:name="android.permission.INJECT_EVENTS"/>
 
 <application
     android:allowBackup="true"
@@ -27,7 +28,14 @@ package="lingya.jfdii">
             <action android:name="JFDII.ACTION_DATA_AVAILABLE" />
         </intent-filter>
     </receiver>
-
+       <service
+            android:name="lingya.jfdii.SendkeyService"
+            android:enabled="true"
+            android:exported="true">
+             <intent-filter>
+                <action android:name="android.intent.action.RESPOND_VIA_MESSAGE"  />
+            </intent-filter>
+            </service>
 </application>
 
 </manifest>

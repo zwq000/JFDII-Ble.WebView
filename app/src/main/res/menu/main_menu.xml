@@ -4,4 +4,8 @@
     <item
         android:id="@+id/menu_item_sendkey"
         android:title="@string/test_send_key" />
+
+    <item
+    android:id="@+id/menu_item_sendbroadcast"
+    android:title="@string/test_send_broadcast" />
 </menu>

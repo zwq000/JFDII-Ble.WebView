@@ -10,6 +10,8 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.content.Intent;
+import lingya.jfdii.io.MeasureValue;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
 
         myWebview = (WebView)findViewById(R.id.mainWebView);
         initWebview();
+
+        //启动服务
+        Intent intent2 = new Intent(this, SendkeyService.class);
+        startService(intent2);
     }
 
     @Override
@@ -46,15 +52,42 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_item_sendkey:
                 testSendKey();
                 break;
+            case R.id.menu_item_sendbroadcast:
+                testSendBroadcast();
+            break;
         }
         return true;
+    }
+
+    /**
+     * 测试发送测量数据广播
+     */
+    private void testSendBroadcast(){
+        MeasureValue value = new MeasureValue("test","-123.12","mm");
+        Intent intent = new Intent("JFDII.ACTION_DATA_AVAILABLE");
+        intent.putExtra("EXTRA_MEASURE_VALUE", value);
+        sendBroadcast(intent);
     }
 
     /**
      * 测试 发送键盘数据
      */
     private void testSendKey(){
-        keybroadProxy.sendString("1234.123");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                for (int i=0;i<10;i++) {
+                    Thread.sleep(1000);
+                    keybroadProxy.sendString( Integer.toString(i)+ "134.123");
+                }
+            }catch(InterruptedException ie){
+               // Log.d(TAG,ie.getMessage());
+            }
+            }
+        }).start();
+
+        //keybroadProxy.sendString("1234.123");
     }
 
 
